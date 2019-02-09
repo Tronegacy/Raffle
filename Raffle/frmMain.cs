@@ -166,8 +166,16 @@ namespace Raffle
 				return;
 			}
 
-			var props = dgvProperties.SelectedRows.OfType<DataGridViewRow>().Select(row => (row.DataBoundItem as DataRowView).Row as dsAssembly.PropertyRow).ToArray();			
+			var props = dgvProperties.SelectedRows.OfType<DataGridViewRow>()
+				.OrderBy(row => row.Index)
+				.Select(row => (row.DataBoundItem as DataRowView).Row as dsAssembly.PropertyRow).ToArray();			
+
 			tbOutput.Text = style.Render(props);
+		}
+
+		private void btnCopy_Click(object sender, EventArgs e)
+		{
+			Clipboard.SetText(tbOutput.Text);
 		}
 	}
 }
