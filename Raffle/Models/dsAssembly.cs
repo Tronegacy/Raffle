@@ -28,11 +28,12 @@ namespace Raffle.Models
 						prop.TypeId = typeRow.Id;
 						prop.PropertyName = p.Name;
 						prop.TypeName = CSharpTypeName(provider, p.PropertyType);
+						prop.IsNullable = IsNullableGeneric(p.PropertyType);
 						result.Property.Rows.Add(prop);
 					}
 				}
 			}
-				
+
 			return result;
 		}
 
@@ -41,6 +42,11 @@ namespace Raffle.Models
 		/// </summary>
 		private static string CSharpTypeName(CSharpCodeProvider provider, Type type)
 		{
+			if (IsNullableGeneric(type))
+			{
+				return CSharpTypeName(provider, type.GetGenericArguments()[0]);
+			}
+
 			CodeTypeReference typeRef = new CodeTypeReference(type);
 			return provider.GetTypeOutput(typeRef).Replace("System.", string.Empty);
 		}

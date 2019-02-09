@@ -610,7 +610,7 @@ namespace Raffle.Models {
             
             private global::System.Data.DataColumn columnTypeName;
             
-            private global::System.Data.DataColumn columnHtmlTemplate;
+            private global::System.Data.DataColumn columnIsNullable;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -671,9 +671,9 @@ namespace Raffle.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn HtmlTemplateColumn {
+            public global::System.Data.DataColumn IsNullableColumn {
                 get {
-                    return this.columnHtmlTemplate;
+                    return this.columnIsNullable;
                 }
             }
             
@@ -714,13 +714,13 @@ namespace Raffle.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public PropertyRow AddPropertyRow(TypeRow parentTypeRowByFK_Type_Property, string PropertyName, string TypeName, string HtmlTemplate) {
+            public PropertyRow AddPropertyRow(TypeRow parentTypeRowByFK_Type_Property, string PropertyName, string TypeName, bool IsNullable) {
                 PropertyRow rowPropertyRow = ((PropertyRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         PropertyName,
                         TypeName,
-                        HtmlTemplate};
+                        IsNullable};
                 if ((parentTypeRowByFK_Type_Property != null)) {
                     columnValuesArray[0] = parentTypeRowByFK_Type_Property[1];
                 }
@@ -757,7 +757,7 @@ namespace Raffle.Models {
                 this.columnTypeId = base.Columns["TypeId"];
                 this.columnPropertyName = base.Columns["PropertyName"];
                 this.columnTypeName = base.Columns["TypeName"];
-                this.columnHtmlTemplate = base.Columns["HtmlTemplate"];
+                this.columnIsNullable = base.Columns["IsNullable"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -769,8 +769,8 @@ namespace Raffle.Models {
                 base.Columns.Add(this.columnPropertyName);
                 this.columnTypeName = new global::System.Data.DataColumn("TypeName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTypeName);
-                this.columnHtmlTemplate = new global::System.Data.DataColumn("HtmlTemplate", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHtmlTemplate);
+                this.columnIsNullable = new global::System.Data.DataColumn("IsNullable", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsNullable);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTypeId,
                                 this.columnPropertyName}, true));
@@ -1004,17 +1004,17 @@ namespace Raffle.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string HtmlTemplate {
+            public bool IsNullable {
                 get {
                     try {
-                        return ((string)(this[this.tableProperty.HtmlTemplateColumn]));
+                        return ((bool)(this[this.tableProperty.IsNullableColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'HtmlTemplate\' in table \'Property\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsNullable\' in table \'Property\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableProperty.HtmlTemplateColumn] = value;
+                    this[this.tableProperty.IsNullableColumn] = value;
                 }
             }
             
@@ -1043,14 +1043,14 @@ namespace Raffle.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsHtmlTemplateNull() {
-                return this.IsNull(this.tableProperty.HtmlTemplateColumn);
+            public bool IsIsNullableNull() {
+                return this.IsNull(this.tableProperty.IsNullableColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetHtmlTemplateNull() {
-                this[this.tableProperty.HtmlTemplateColumn] = global::System.Convert.DBNull;
+            public void SetIsNullableNull() {
+                this[this.tableProperty.IsNullableColumn] = global::System.Convert.DBNull;
             }
         }
         
