@@ -70,6 +70,14 @@
     </Compile>
     <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Models\ComboBoxItem.cs" />
+    <Compile Include="Models\dsAssembly.cs">
+      <DependentUpon>dsAssembly.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dsAssembly.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAssembly.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\BuilderTextBox.resx">
@@ -87,6 +95,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Models\dsAssembly.xsc">
+      <DependentUpon>dsAssembly.xsd</DependentUpon>
+    </None>
+    <None Include="Models\dsAssembly.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAssembly.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Models\dsAssembly.xss">
+      <DependentUpon>dsAssembly.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
