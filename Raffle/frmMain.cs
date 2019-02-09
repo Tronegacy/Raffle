@@ -49,16 +49,27 @@ namespace Raffle
 		{
 			_settings = JsonSettingsBase.Load<AppSettings>();
 			_styles = LoadStyles();
+
 			cbStyle.Items.AddRange(_styles);
+			FillComboBox<Orientation>(cbOrientation);
 
 			LoadFields();
 			InitDataBinding();
-
+						
 			if (File.Exists(tbAssembly.Text))
 			{
 				_assembly = dsAssembly.FromAssembly(tbAssembly.Text);
 				InitDataGrids();
 			}
+		}
+
+		private void FillComboBox<T>(ComboBox comboBox)
+		{
+			var values = Enum.GetValues(typeof(T)).OfType<T>().ToArray();
+			var names = Enum.GetNames(typeof(T));
+			var items = names.Select((name, index) => new ComboBoxItem<T>(values[index], name)).ToArray();
+			comboBox.Items.Clear();
+			comboBox.Items.AddRange(items);
 		}
 
 		private Style[] LoadStyles()
@@ -114,11 +125,23 @@ namespace Raffle
 		private void LoadFields()
 		{
 			tbAssembly.Text = _settings.AssemblyFile;
+			cbStyle.SelectedIndex = cbStyle.FindString(_settings.Style);
+			cbOrientation.SelectedIndex = cbOrientation.FindString(_settings.SplitterOrientation.ToString());
+			splitContainer1.Orientation = _settings.SplitterOrientation;
 		}
 
 		private void InitDataBinding()
 		{
 			tbAssembly.TextChanged += delegate (object sender, EventArgs e) { _settings.AssemblyFile = tbAssembly.Text; };
+
+			cbOrientation.SelectedIndexChanged += delegate (object sender, EventArgs e) 
+			{
+				var value = ((ComboBoxItem<Orientation>)cbOrientation.SelectedItem).Value;
+				_settings.SplitterOrientation = value;
+				splitContainer1.Orientation = value;
+			};
+
+			cbStyle.SelectedIndexChanged += delegate (object sender, EventArgs e) { _settings.Style = (cbStyle.SelectedItem as Style)?.Name; };
 		}
 
 		private void frmMain_FormClosing(object sender, FormClosingEventArgs e)

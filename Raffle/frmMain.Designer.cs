@@ -32,7 +32,6 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.panel2 = new System.Windows.Forms.Panel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.dgvTypes = new System.Windows.Forms.DataGridView();
 			this.colTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +49,7 @@
 			this.colIsNullable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.cbStyle = new System.Windows.Forms.ComboBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.cbOrientation = new System.Windows.Forms.ComboBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -67,6 +67,7 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.cbOrientation);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.cbStyle);
 			this.panel1.Controls.Add(this.tbAssembly);
@@ -74,7 +75,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(747, 83);
+			this.panel1.Size = new System.Drawing.Size(851, 83);
 			this.panel1.TabIndex = 0;
 			// 
 			// label1
@@ -86,31 +87,24 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Assembly:";
 			// 
-			// panel2
-			// 
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel2.Location = new System.Drawing.Point(0, 325);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(747, 54);
-			this.panel2.TabIndex = 0;
-			// 
 			// splitContainer1
 			// 
 			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainer1.Location = new System.Drawing.Point(0, 0);
 			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.dgvTypes);
-			this.splitContainer1.Panel1.Controls.Add(this.tbTypeFilter);
+			this.splitContainer1.Panel1.Controls.Add(this.dgvProperties);
+			this.splitContainer1.Panel1.Controls.Add(this.panel3);
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.dgvProperties);
-			this.splitContainer1.Panel2.Controls.Add(this.panel3);
-			this.splitContainer1.Size = new System.Drawing.Size(346, 242);
-			this.splitContainer1.SplitterDistance = 175;
+			this.splitContainer1.Panel2.Controls.Add(this.tbOutput);
+			this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
+			this.splitContainer1.Size = new System.Drawing.Size(581, 397);
+			this.splitContainer1.SplitterDistance = 186;
 			this.splitContainer1.TabIndex = 2;
 			// 
 			// dgvTypes
@@ -128,7 +122,7 @@
 			this.dgvTypes.ReadOnly = true;
 			this.dgvTypes.RowHeadersVisible = false;
 			this.dgvTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvTypes.Size = new System.Drawing.Size(175, 221);
+			this.dgvTypes.Size = new System.Drawing.Size(266, 376);
 			this.dgvTypes.TabIndex = 1;
 			// 
 			// colTypeName
@@ -144,7 +138,7 @@
 			this.tbTypeFilter.Dock = System.Windows.Forms.DockStyle.Top;
 			this.tbTypeFilter.Location = new System.Drawing.Point(0, 0);
 			this.tbTypeFilter.Name = "tbTypeFilter";
-			this.tbTypeFilter.Size = new System.Drawing.Size(175, 21);
+			this.tbTypeFilter.Size = new System.Drawing.Size(266, 21);
 			this.tbTypeFilter.TabIndex = 0;
 			this.tbTypeFilter.TextChanged += new System.EventHandler(this.tbTypeFilter_TextChanged);
 			// 
@@ -155,7 +149,7 @@
 			this.tbAssembly.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbAssembly.Location = new System.Drawing.Point(108, 15);
 			this.tbAssembly.Name = "tbAssembly";
-			this.tbAssembly.Size = new System.Drawing.Size(627, 26);
+			this.tbAssembly.Size = new System.Drawing.Size(731, 26);
 			this.tbAssembly.Suggestions = null;
 			this.tbAssembly.TabIndex = 1;
 			this.tbAssembly.BuilderClicked += new Raffle.Controls.BuilderEventHandler(this.tbAssembly_BuilderClicked);
@@ -165,7 +159,7 @@
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel3.Location = new System.Drawing.Point(0, 0);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(167, 21);
+			this.panel3.Size = new System.Drawing.Size(581, 21);
 			this.panel3.TabIndex = 0;
 			// 
 			// dgvProperties
@@ -183,7 +177,7 @@
 			this.dgvProperties.Name = "dgvProperties";
 			this.dgvProperties.RowHeadersVisible = false;
 			this.dgvProperties.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvProperties.Size = new System.Drawing.Size(167, 221);
+			this.dgvProperties.Size = new System.Drawing.Size(581, 165);
 			this.dgvProperties.TabIndex = 1;
 			// 
 			// splitContainer2
@@ -194,14 +188,14 @@
 			// 
 			// splitContainer2.Panel1
 			// 
-			this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
+			this.splitContainer2.Panel1.Controls.Add(this.dgvTypes);
+			this.splitContainer2.Panel1.Controls.Add(this.tbTypeFilter);
 			// 
 			// splitContainer2.Panel2
 			// 
-			this.splitContainer2.Panel2.Controls.Add(this.tbOutput);
-			this.splitContainer2.Panel2.Controls.Add(this.toolStrip1);
-			this.splitContainer2.Size = new System.Drawing.Size(747, 242);
-			this.splitContainer2.SplitterDistance = 346;
+			this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
+			this.splitContainer2.Size = new System.Drawing.Size(851, 397);
+			this.splitContainer2.SplitterDistance = 266;
 			this.splitContainer2.TabIndex = 3;
 			// 
 			// tbOutput
@@ -238,7 +232,7 @@
 			this.tbOutput.RightBracket2 = ')';
 			this.tbOutput.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
 			this.tbOutput.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("tbOutput.ServiceColors")));
-			this.tbOutput.Size = new System.Drawing.Size(397, 217);
+			this.tbOutput.Size = new System.Drawing.Size(581, 182);
 			this.tbOutput.TabIndex = 1;
 			this.tbOutput.Zoom = 100;
 			// 
@@ -249,7 +243,7 @@
             this.btnCopy});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(397, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(581, 25);
 			this.toolStrip1.TabIndex = 0;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -315,13 +309,22 @@
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Style:";
 			// 
+			// cbOrientation
+			// 
+			this.cbOrientation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.cbOrientation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbOrientation.FormattingEnabled = true;
+			this.cbOrientation.Location = new System.Drawing.Point(718, 47);
+			this.cbOrientation.Name = "cbOrientation";
+			this.cbOrientation.Size = new System.Drawing.Size(121, 21);
+			this.cbOrientation.TabIndex = 4;
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(747, 379);
+			this.ClientSize = new System.Drawing.Size(851, 480);
 			this.Controls.Add(this.splitContainer2);
-			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "frmMain";
@@ -332,15 +335,15 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
-			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).EndInit();
 			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel1.PerformLayout();
 			this.splitContainer2.Panel2.ResumeLayout(false);
-			this.splitContainer2.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
 			this.splitContainer2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.tbOutput)).EndInit();
@@ -355,7 +358,6 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label label1;
 		private Controls.BuilderTextBox tbAssembly;
-		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.DataGridView dgvTypes;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colTypeName;
@@ -372,6 +374,7 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn colIsNullable;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox cbStyle;
+		private System.Windows.Forms.ComboBox cbOrientation;
 	}
 }
 
