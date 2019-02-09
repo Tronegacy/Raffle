@@ -8,5 +8,8 @@ So, I wanted a way to setup Razor templates for different field types that inclu
 
 I wanted my app to be entirely template-driven with no hard-coded Bootstrap artifacts. In this example below, I would have "Bootstrap" as a template in the dropdown at the top, then provide some way to edit Bootstrap-specific field templates -- for example there would be checkbox and textbox templates.
 
-![img](https://adamosoftware.blob.core.windows.net:443/images/raffle.png)
+![img](https://adamosoftware.blob.core.windows.net:443/images/raffle2.png)
 
+String and bool are the only types I've setup so far, but you can see there's not much to them. These are setup to load from embedded resources, but ideally this should also load from the file system for easier end-user customization.
+
+![img](https://adamosoftware.blob.core.windows.net:443/images/raffle3.png)
