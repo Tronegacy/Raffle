@@ -37,6 +37,28 @@ namespace Raffle.Models
 			return result;
 		}
 
+		public partial class TypeRow
+		{
+			public string ShortName
+			{
+				get { return FullName.Split('.').Last(); }
+			}
+		}
+
+		public partial class PropertyRow
+		{
+			public string CSharpSyntax
+			{
+				get
+				{
+					string result = $"public {TypeName}";
+					if (IsNullable) result += "?";
+					result += $" {PropertyName} {{ get; set; }}";
+					return result;
+				}
+			}
+		}
+
 		/// <summary>
 		/// From https://github.com/adamosoftware/Postulate.Zinger/blob/master/Zinger/Models/QueryProvider.cs#L253
 		/// </summary>

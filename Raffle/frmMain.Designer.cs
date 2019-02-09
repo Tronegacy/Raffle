@@ -42,7 +42,7 @@
 			this.colPropertyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colIsNullable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.tbOutput = new FastColoredTextBoxNS.FastColoredTextBox();
+			this.tbHtmlOutput = new FastColoredTextBoxNS.FastColoredTextBox();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btnRefresh = new System.Windows.Forms.ToolStripButton();
 			this.btnCopy = new System.Windows.Forms.ToolStripButton();
@@ -50,19 +50,27 @@
 			this.colTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tbTypeFilter = new System.Windows.Forms.TextBox();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.tbCSharpOutput = new FastColoredTextBoxNS.FastColoredTextBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.tbOutput)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tbHtmlOutput)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tbCSharpOutput)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -141,7 +149,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.tbOutput);
+			this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
 			this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
 			this.splitContainer1.Size = new System.Drawing.Size(581, 397);
 			this.splitContainer1.SplitterDistance = 186;
@@ -198,9 +206,9 @@
 			this.panel3.Size = new System.Drawing.Size(581, 21);
 			this.panel3.TabIndex = 0;
 			// 
-			// tbOutput
+			// tbHtmlOutput
 			// 
-			this.tbOutput.AutoCompleteBracketsList = new char[] {
+			this.tbHtmlOutput.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
         '{',
@@ -211,29 +219,30 @@
         '\"',
         '\'',
         '\''};
-			this.tbOutput.AutoIndentCharsPatterns = "";
-			this.tbOutput.AutoScrollMinSize = new System.Drawing.Size(27, 14);
-			this.tbOutput.BackBrush = null;
-			this.tbOutput.CharHeight = 14;
-			this.tbOutput.CharWidth = 8;
-			this.tbOutput.CommentPrefix = null;
-			this.tbOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.tbOutput.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-			this.tbOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tbOutput.IsReplaceMode = false;
-			this.tbOutput.Language = FastColoredTextBoxNS.Language.HTML;
-			this.tbOutput.LeftBracket = '<';
-			this.tbOutput.LeftBracket2 = '(';
-			this.tbOutput.Location = new System.Drawing.Point(0, 25);
-			this.tbOutput.Name = "tbOutput";
-			this.tbOutput.Paddings = new System.Windows.Forms.Padding(0);
-			this.tbOutput.RightBracket = '>';
-			this.tbOutput.RightBracket2 = ')';
-			this.tbOutput.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-			this.tbOutput.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("tbOutput.ServiceColors")));
-			this.tbOutput.Size = new System.Drawing.Size(581, 182);
-			this.tbOutput.TabIndex = 1;
-			this.tbOutput.Zoom = 100;
+			this.tbHtmlOutput.AutoIndentCharsPatterns = "";
+			this.tbHtmlOutput.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+			this.tbHtmlOutput.BackBrush = null;
+			this.tbHtmlOutput.CharHeight = 14;
+			this.tbHtmlOutput.CharWidth = 8;
+			this.tbHtmlOutput.CommentPrefix = null;
+			this.tbHtmlOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.tbHtmlOutput.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+			this.tbHtmlOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbHtmlOutput.Font = new System.Drawing.Font("Courier New", 9.75F);
+			this.tbHtmlOutput.IsReplaceMode = false;
+			this.tbHtmlOutput.Language = FastColoredTextBoxNS.Language.HTML;
+			this.tbHtmlOutput.LeftBracket = '<';
+			this.tbHtmlOutput.LeftBracket2 = '(';
+			this.tbHtmlOutput.Location = new System.Drawing.Point(3, 3);
+			this.tbHtmlOutput.Name = "tbHtmlOutput";
+			this.tbHtmlOutput.Paddings = new System.Windows.Forms.Padding(0);
+			this.tbHtmlOutput.RightBracket = '>';
+			this.tbHtmlOutput.RightBracket2 = ')';
+			this.tbHtmlOutput.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+			this.tbHtmlOutput.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("tbHtmlOutput.ServiceColors")));
+			this.tbHtmlOutput.Size = new System.Drawing.Size(567, 150);
+			this.tbHtmlOutput.TabIndex = 1;
+			this.tbHtmlOutput.Zoom = 100;
 			// 
 			// toolStrip1
 			// 
@@ -319,6 +328,78 @@
 			this.splitContainer2.SplitterDistance = 266;
 			this.splitContainer2.TabIndex = 3;
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 25);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(581, 182);
+			this.tabControl1.TabIndex = 2;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.tbHtmlOutput);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(573, 156);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Html";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.tbCSharpOutput);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(573, 156);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Model Class";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// tbCSharpOutput
+			// 
+			this.tbCSharpOutput.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+			this.tbCSharpOutput.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\r\n^\\s*(case|default)\\s*[^:]" +
+    "*(?<range>:)\\s*(?<range>[^;]+);\r\n";
+			this.tbCSharpOutput.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+			this.tbCSharpOutput.BackBrush = null;
+			this.tbCSharpOutput.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
+			this.tbCSharpOutput.CharHeight = 14;
+			this.tbCSharpOutput.CharWidth = 8;
+			this.tbCSharpOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.tbCSharpOutput.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+			this.tbCSharpOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbCSharpOutput.Font = new System.Drawing.Font("Courier New", 9.75F);
+			this.tbCSharpOutput.IsReplaceMode = false;
+			this.tbCSharpOutput.Language = FastColoredTextBoxNS.Language.CSharp;
+			this.tbCSharpOutput.LeftBracket = '(';
+			this.tbCSharpOutput.LeftBracket2 = '{';
+			this.tbCSharpOutput.Location = new System.Drawing.Point(3, 3);
+			this.tbCSharpOutput.Name = "tbCSharpOutput";
+			this.tbCSharpOutput.Paddings = new System.Windows.Forms.Padding(0);
+			this.tbCSharpOutput.RightBracket = ')';
+			this.tbCSharpOutput.RightBracket2 = '}';
+			this.tbCSharpOutput.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+			this.tbCSharpOutput.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("tbCSharpOutput.ServiceColors")));
+			this.tbCSharpOutput.Size = new System.Drawing.Size(567, 150);
+			this.tbCSharpOutput.TabIndex = 0;
+			this.tbCSharpOutput.Zoom = 100;
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -340,7 +421,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.tbOutput)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tbHtmlOutput)).EndInit();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).EndInit();
@@ -349,6 +430,10 @@
 			this.splitContainer2.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
 			this.splitContainer2.ResumeLayout(false);
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
+			this.tabPage2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.tbCSharpOutput)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -365,7 +450,7 @@
 		private System.Windows.Forms.DataGridView dgvProperties;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.SplitContainer splitContainer2;
-		private FastColoredTextBoxNS.FastColoredTextBox tbOutput;
+		private FastColoredTextBoxNS.FastColoredTextBox tbHtmlOutput;
 		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.ToolStripButton btnRefresh;
 		private System.Windows.Forms.ToolStripButton btnCopy;
@@ -375,6 +460,10 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox cbStyle;
 		private System.Windows.Forms.ComboBox cbOrientation;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.TabPage tabPage2;
+		private FastColoredTextBoxNS.FastColoredTextBox tbCSharpOutput;
 	}
 }
 

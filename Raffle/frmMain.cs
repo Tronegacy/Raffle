@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Raffle
@@ -159,6 +160,45 @@ namespace Raffle
 
 		private void btnRefresh_Click(object sender, EventArgs e)
 		{
+			var props = dgvProperties.SelectedRows.OfType<DataGridViewRow>()
+				.OrderBy(row => row.Index)
+				.Select(row => (row.DataBoundItem as DataRowView).Row as dsAssembly.PropertyRow).ToArray();
+
+			switch (tabControl1.SelectedIndex)
+			{
+				case 0: // html
+					RenderHtmlOutput(props);
+					break;
+
+				case 1: // c# model class
+					RenderModelClass(props);
+					break;
+			}
+		}
+
+		private void RenderModelClass(dsAssembly.PropertyRow[] props)
+		{
+			StringBuilder output = new StringBuilder();
+
+			dsAssembly.TypeRow currentType = SelectedType();
+			output.AppendLine($"public class {currentType.ShortName}Editor\r\n{{");
+
+			foreach (var prop in props) output.AppendLine("\t" + prop.CSharpSyntax);
+
+			output.AppendLine("}");
+
+			tbCSharpOutput.Text = output.ToString();
+		}
+
+		private dsAssembly.TypeRow SelectedType()
+		{
+			return dgvTypes.SelectedRows.OfType<DataGridViewRow>()
+				.Select(row => (row.DataBoundItem as DataRowView).Row as dsAssembly.TypeRow)
+				.First();
+		}
+
+		private void RenderHtmlOutput(dsAssembly.PropertyRow[] props)
+		{
 			var style = cbStyle.SelectedItem as Style;
 			if (style == null)
 			{
@@ -166,16 +206,22 @@ namespace Raffle
 				return;
 			}
 
-			var props = dgvProperties.SelectedRows.OfType<DataGridViewRow>()
-				.OrderBy(row => row.Index)
-				.Select(row => (row.DataBoundItem as DataRowView).Row as dsAssembly.PropertyRow).ToArray();			
-
-			tbOutput.Text = style.Render(props);
+			tbHtmlOutput.Text = style.Render(props);
 		}
 
 		private void btnCopy_Click(object sender, EventArgs e)
 		{
-			Clipboard.SetText(tbOutput.Text);
+			switch (tabControl1.SelectedIndex)
+			{
+				case 0: // html
+					Clipboard.SetText(tbHtmlOutput.Text);
+					break;
+
+				case 1: // c#
+					Clipboard.SetText(tbCSharpOutput.Text);
+					break;
+			}
+			
 		}
 	}
 }
