@@ -28,21 +28,116 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.tbAssembly = new Raffle.Controls.BuilderTextBox();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.cbTemplate = new System.Windows.Forms.Label();
+			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.cbTemplate);
+			this.panel1.Controls.Add(this.comboBox1);
+			this.panel1.Controls.Add(this.tbAssembly);
+			this.panel1.Controls.Add(this.label1);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(639, 85);
+			this.panel1.TabIndex = 0;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(35, 22);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(67, 13);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Assembly:";
+			// 
+			// tbAssembly
+			// 
+			this.tbAssembly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbAssembly.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbAssembly.Location = new System.Drawing.Point(108, 15);
+			this.tbAssembly.Name = "tbAssembly";
+			this.tbAssembly.Size = new System.Drawing.Size(519, 26);
+			this.tbAssembly.Suggestions = null;
+			this.tbAssembly.TabIndex = 2;
+			this.tbAssembly.BuilderClicked += new Raffle.Controls.BuilderEventHandler(this.tbAssembly_BuilderClicked);
+			// 
+			// panel2
+			// 
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panel2.Location = new System.Drawing.Point(0, 275);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(639, 54);
+			this.panel2.TabIndex = 1;
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Location = new System.Drawing.Point(0, 85);
+			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Size = new System.Drawing.Size(639, 190);
+			this.splitContainer1.SplitterDistance = 213;
+			this.splitContainer1.TabIndex = 2;
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(108, 47);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(238, 21);
+			this.comboBox1.TabIndex = 3;
+			// 
+			// cbTemplate
+			// 
+			this.cbTemplate.AutoSize = true;
+			this.cbTemplate.Location = new System.Drawing.Point(38, 50);
+			this.cbTemplate.Name = "cbTemplate";
+			this.cbTemplate.Size = new System.Drawing.Size(64, 13);
+			this.cbTemplate.TabIndex = 4;
+			this.cbTemplate.Text = "Template:";
 			// 
 			// frmMain
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(618, 329);
+			this.ClientSize = new System.Drawing.Size(639, 329);
+			this.Controls.Add(this.splitContainer1);
+			this.Controls.Add(this.panel2);
+			this.Controls.Add(this.panel1);
+			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "frmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Raffle";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+			this.Load += new System.EventHandler(this.frmMain_Load);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
+
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Label label1;
+		private Controls.BuilderTextBox tbAssembly;
+		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Label cbTemplate;
 	}
 }
 
