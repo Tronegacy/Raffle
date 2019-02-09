@@ -128,5 +128,9 @@
     <EmbeddedResource Include="Styles\Bootstrap\bool.html" />
     <EmbeddedResource Include="Styles\Bootstrap\string.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Styles\Bootstrap\DateTime.html" />
+    <EmbeddedResource Include="Styles\Bootstrap\int.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
