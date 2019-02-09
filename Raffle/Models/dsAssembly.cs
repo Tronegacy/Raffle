@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using Microsoft.CSharp;
+using System;
+using System.CodeDom;
+using System.Linq;
 using System.Reflection;
 
 namespace Raffle.Models
@@ -12,21 +15,39 @@ namespace Raffle.Models
 			var assembly = Assembly.LoadFrom(fileName);
 
 			var types = assembly.GetExportedTypes();
-			foreach (var t in types)
+
+			using (var provider = new CSharpCodeProvider())
 			{
-				var typeRow = result.Type.AddTypeRow(t.FullName);
-				var props = t.GetProperties().Where(p => p.CanWrite && p.CanRead);
-				foreach (var p in props)
+				foreach (var t in types)
 				{
-					var prop = result.Property.NewPropertyRow();
-					prop.TypeId = typeRow.Id;
-					prop.PropertyName = p.Name;
-					prop.TypeName = p.PropertyType.Name;
-					result.Property.Rows.Add(prop);
+					var typeRow = result.Type.AddTypeRow(t.FullName);
+					var props = t.GetProperties().Where(p => p.CanWrite && p.CanRead);
+					foreach (var p in props)
+					{
+						var prop = result.Property.NewPropertyRow();
+						prop.TypeId = typeRow.Id;
+						prop.PropertyName = p.Name;
+						prop.TypeName = CSharpTypeName(provider, p.PropertyType);
+						result.Property.Rows.Add(prop);
+					}
 				}
 			}
-
+				
 			return result;
+		}
+
+		/// <summary>
+		/// From https://github.com/adamosoftware/Postulate.Zinger/blob/master/Zinger/Models/QueryProvider.cs#L253
+		/// </summary>
+		private static string CSharpTypeName(CSharpCodeProvider provider, Type type)
+		{
+			CodeTypeReference typeRef = new CodeTypeReference(type);
+			return provider.GetTypeOutput(typeRef).Replace("System.", string.Empty);
+		}
+
+		private static bool IsNullableGeneric(Type type)
+		{
+			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
 		}
 	}
 }

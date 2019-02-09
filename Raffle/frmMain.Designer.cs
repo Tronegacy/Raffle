@@ -28,12 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.cbTemplate = new System.Windows.Forms.Label();
 			this.dgvTypes = new System.Windows.Forms.DataGridView();
 			this.colTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tbTypeFilter = new System.Windows.Forms.TextBox();
@@ -42,7 +42,8 @@
 			this.dgvProperties = new System.Windows.Forms.DataGridView();
 			this.colPropertyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colPropertyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.colHtmlTemplate = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.tbOutput = new FastColoredTextBoxNS.FastColoredTextBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -50,18 +51,21 @@
 			this.splitContainer1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+			this.splitContainer2.Panel1.SuspendLayout();
+			this.splitContainer2.Panel2.SuspendLayout();
+			this.splitContainer2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tbOutput)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.cbTemplate);
-			this.panel1.Controls.Add(this.comboBox1);
 			this.panel1.Controls.Add(this.tbAssembly);
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(639, 85);
+			this.panel1.Size = new System.Drawing.Size(639, 58);
 			this.panel1.TabIndex = 0;
 			// 
 			// label1
@@ -84,7 +88,7 @@
 			// splitContainer1
 			// 
 			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer1.Location = new System.Drawing.Point(0, 85);
+			this.splitContainer1.Location = new System.Drawing.Point(0, 0);
 			this.splitContainer1.Name = "splitContainer1";
 			// 
 			// splitContainer1.Panel1
@@ -96,26 +100,9 @@
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.dgvProperties);
 			this.splitContainer1.Panel2.Controls.Add(this.panel3);
-			this.splitContainer1.Size = new System.Drawing.Size(639, 190);
-			this.splitContainer1.SplitterDistance = 292;
+			this.splitContainer1.Size = new System.Drawing.Size(296, 217);
+			this.splitContainer1.SplitterDistance = 150;
 			this.splitContainer1.TabIndex = 2;
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(108, 47);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(238, 21);
-			this.comboBox1.TabIndex = 3;
-			// 
-			// cbTemplate
-			// 
-			this.cbTemplate.AutoSize = true;
-			this.cbTemplate.Location = new System.Drawing.Point(38, 50);
-			this.cbTemplate.Name = "cbTemplate";
-			this.cbTemplate.Size = new System.Drawing.Size(64, 13);
-			this.cbTemplate.TabIndex = 4;
-			this.cbTemplate.Text = "Template:";
 			// 
 			// dgvTypes
 			// 
@@ -132,7 +119,7 @@
 			this.dgvTypes.ReadOnly = true;
 			this.dgvTypes.RowHeadersVisible = false;
 			this.dgvTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvTypes.Size = new System.Drawing.Size(292, 169);
+			this.dgvTypes.Size = new System.Drawing.Size(150, 196);
 			this.dgvTypes.TabIndex = 0;
 			// 
 			// colTypeName
@@ -148,7 +135,7 @@
 			this.tbTypeFilter.Dock = System.Windows.Forms.DockStyle.Top;
 			this.tbTypeFilter.Location = new System.Drawing.Point(0, 0);
 			this.tbTypeFilter.Name = "tbTypeFilter";
-			this.tbTypeFilter.Size = new System.Drawing.Size(292, 21);
+			this.tbTypeFilter.Size = new System.Drawing.Size(150, 21);
 			this.tbTypeFilter.TabIndex = 1;
 			this.tbTypeFilter.TextChanged += new System.EventHandler(this.tbTypeFilter_TextChanged);
 			// 
@@ -169,7 +156,7 @@
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel3.Location = new System.Drawing.Point(0, 0);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(343, 21);
+			this.panel3.Size = new System.Drawing.Size(142, 21);
 			this.panel3.TabIndex = 0;
 			// 
 			// dgvProperties
@@ -180,14 +167,13 @@
 			this.dgvProperties.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dgvProperties.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPropertyName,
-            this.colPropertyType,
-            this.colHtmlTemplate});
+            this.colPropertyType});
 			this.dgvProperties.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgvProperties.Location = new System.Drawing.Point(0, 21);
 			this.dgvProperties.Name = "dgvProperties";
 			this.dgvProperties.RowHeadersVisible = false;
 			this.dgvProperties.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvProperties.Size = new System.Drawing.Size(343, 169);
+			this.dgvProperties.Size = new System.Drawing.Size(142, 196);
 			this.dgvProperties.TabIndex = 1;
 			// 
 			// colPropertyName
@@ -206,18 +192,67 @@
 			this.colPropertyType.Name = "colPropertyType";
 			this.colPropertyType.ReadOnly = true;
 			// 
-			// colHtmlTemplate
+			// splitContainer2
 			// 
-			this.colHtmlTemplate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.colHtmlTemplate.HeaderText = "Template";
-			this.colHtmlTemplate.Name = "colHtmlTemplate";
+			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.Location = new System.Drawing.Point(0, 58);
+			this.splitContainer2.Name = "splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.tbOutput);
+			this.splitContainer2.Size = new System.Drawing.Size(639, 217);
+			this.splitContainer2.SplitterDistance = 296;
+			this.splitContainer2.TabIndex = 3;
+			// 
+			// tbOutput
+			// 
+			this.tbOutput.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+			this.tbOutput.AutoIndentCharsPatterns = "";
+			this.tbOutput.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+			this.tbOutput.BackBrush = null;
+			this.tbOutput.CharHeight = 14;
+			this.tbOutput.CharWidth = 8;
+			this.tbOutput.CommentPrefix = null;
+			this.tbOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.tbOutput.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+			this.tbOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbOutput.Font = new System.Drawing.Font("Courier New", 9.75F);
+			this.tbOutput.IsReplaceMode = false;
+			this.tbOutput.Language = FastColoredTextBoxNS.Language.HTML;
+			this.tbOutput.LeftBracket = '<';
+			this.tbOutput.LeftBracket2 = '(';
+			this.tbOutput.Location = new System.Drawing.Point(0, 0);
+			this.tbOutput.Name = "tbOutput";
+			this.tbOutput.Paddings = new System.Windows.Forms.Padding(0);
+			this.tbOutput.RightBracket = '>';
+			this.tbOutput.RightBracket2 = ')';
+			this.tbOutput.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+			this.tbOutput.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("tbOutput.ServiceColors")));
+			this.tbOutput.Size = new System.Drawing.Size(339, 217);
+			this.tbOutput.TabIndex = 0;
+			this.tbOutput.Zoom = 100;
 			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(639, 329);
-			this.Controls.Add(this.splitContainer1);
+			this.Controls.Add(this.splitContainer2);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -235,6 +270,11 @@
 			this.splitContainer1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).EndInit();
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+			this.splitContainer2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.tbOutput)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -246,8 +286,6 @@
 		private Controls.BuilderTextBox tbAssembly;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.SplitContainer splitContainer1;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Label cbTemplate;
 		private System.Windows.Forms.DataGridView dgvTypes;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colTypeName;
 		private System.Windows.Forms.TextBox tbTypeFilter;
@@ -255,7 +293,8 @@
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colPropertyName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colPropertyType;
-		private System.Windows.Forms.DataGridViewComboBoxColumn colHtmlTemplate;
+		private System.Windows.Forms.SplitContainer splitContainer2;
+		private FastColoredTextBoxNS.FastColoredTextBox tbOutput;
 	}
 }
 
