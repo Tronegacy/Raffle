@@ -10,3 +10,6 @@ I wanted my app to be entirely template-driven with no hard-coded Bootstrap arti
 
 ![img](https://adamosoftware.blob.core.windows.net:443/images/raffle2.png)
 
+String and bool are the only types I've setup so far, but you can see there's not much to them. These are setup to load from embedded resources, but ideally this should also load from the file system for easier end-user customization.
+
+![img](https://adamosoftware.blob.core.windows.net:443/images/raffle3.png)
