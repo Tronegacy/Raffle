@@ -1,13 +1,22 @@
 ﻿using Raffle.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Raffle.Classes
 {
-	public class FormScaffolder
+	public class Style
 	{
-		public static FormScaffolder FromResourcePath(string path)
+		public string Name { get; }
+
+		public Style(string name)
+		{
+			Name = name;
+		}
+
+		public static Style FromResourcePath(string path)
 		{
 			throw new NotImplementedException();
 		}
@@ -15,7 +24,7 @@ namespace Raffle.Classes
 		/// <summary>
 		/// Loads scaffolder from file system path
 		/// </summary>
-		public static FormScaffolder FromFilePath(string path)
+		public static Style FromFilePath(string path)
 		{
 			throw new NotImplementedException();
 		}
@@ -38,13 +47,34 @@ namespace Raffle.Classes
 			{
 				foreach (var prop in properties) result.AppendLine(RenderProperty(prop));
 			}
+			else
+			{
+				// wrap in col-* divs
+			}
 
 			return result.ToString();
 		}
 
 		private string RenderProperty(dsAssembly.PropertyRow prop)
 		{
-			throw new NotImplementedException();
+			if (!Templates.ContainsKey(prop.TypeName)) throw new InvalidOperationException($"No template defined for type {prop.TypeName}");
+
+			string result = Templates[prop.TypeName];
+
+			var variables = Regex.Match(result, "(?<!{{)({{[^{\r\n]*}})(?!{)");
+
+			foreach (Match variable in variables.Captures)
+			{
+				string columnName = variable.Value.Substring(2, variable.Value.Length - 4);
+				result = result.Replace(variable.Value, prop.Field<string>(columnName));
+			}
+
+			return result;
+		}
+
+		public override string ToString()
+		{
+			return Name;
 		}
 	}
 }

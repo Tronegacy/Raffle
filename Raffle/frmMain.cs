@@ -1,8 +1,12 @@
 ﻿using JsonSettings;
+using Raffle.Classes;
 using Raffle.Models;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Raffle
@@ -11,6 +15,7 @@ namespace Raffle
 	{
 		private AppSettings _settings = null;
 		private dsAssembly _assembly = null;
+		private Style[] _styles = null;
 
 		public frmMain()
 		{
@@ -37,12 +42,14 @@ namespace Raffle
 			BindingSource bsProps = new BindingSource();
 			bsProps.DataSource = bsTypes;
 			bsProps.DataMember = "FK_Type_Property";
-			dgvProperties.DataSource = bsProps;			
+			dgvProperties.DataSource = bsProps;
 		}
 
 		private void frmMain_Load(object sender, EventArgs e)
 		{
 			_settings = JsonSettingsBase.Load<AppSettings>();
+			_styles = LoadStyles();
+			cbStyle.Items.AddRange(_styles);
 
 			LoadFields();
 			InitDataBinding();
@@ -52,6 +59,56 @@ namespace Raffle
 				_assembly = dsAssembly.FromAssembly(tbAssembly.Text);
 				InitDataGrids();
 			}
+		}
+
+		private Style[] LoadStyles()
+		{
+			List<Style> results = new List<Style>();
+
+			results.AddRange(GetStylesFromResources("Raffle.Styles"));
+
+			return results.ToArray();
+		}
+
+		private IEnumerable<Style> GetStylesFromResources(string resourcePath)
+		{
+			var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames()
+				.Where(r => r.StartsWith(resourcePath))
+				.Select(r => r.Substring(resourcePath.Length)).ToArray();
+
+			var styles = resources.GroupBy(name =>
+			{
+				string[] parts = name.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+				return parts[0];
+			});
+
+			return styles.Select(grp =>
+			{
+				var result = new Style(grp.Key);
+				result.Templates = LoadResourceTemplates(resourcePath, grp);
+				return result;
+			});			
+		}
+
+		private Dictionary<string, string> LoadResourceTemplates(string path, IGrouping<string, string> grp)
+		{
+			Dictionary<string, string> results = new Dictionary<string, string>();
+
+			foreach (var item in grp)
+			{
+				var parts = item.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+				string typeName = parts[parts.Length - 2]; // the type name is assumed to be the name before th extention (i.e. bool.html)
+				using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(path + item))
+				{
+					using (var reader = new StreamReader(resource))
+					{
+						string content = reader.ReadToEnd();
+						results.Add(typeName, content);
+					}
+				}
+			}
+
+			return results;
 		}
 
 		private void LoadFields()
@@ -75,6 +132,19 @@ namespace Raffle
 			(dgvTypes.DataSource as BindingSource).Filter = (!string.IsNullOrEmpty(filter)) ?
 				$"[FullName] LIKE '%{tbTypeFilter.Text}%'" :
 				null;
+		}
+
+		private void btnRefresh_Click(object sender, EventArgs e)
+		{
+			var style = cbStyle.SelectedItem as Style;
+			if (style == null)
+			{
+				MessageBox.Show("No style selected.");
+				return;
+			}
+
+			var props = dgvProperties.SelectedRows.OfType<DataGridViewRow>().Select(row => (row.DataBoundItem as DataRowView).Row as dsAssembly.PropertyRow).ToArray();			
+			tbOutput.Text = style.Render(props);
 		}
 	}
 }

@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\FormScaffolder.cs" />
+    <Compile Include="Classes\Style.cs" />
     <Compile Include="Controls\BuilderTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,8 +125,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\Bootstrap\bool.html" />
-    <Content Include="Styles\Bootstrap\string.html" />
+    <EmbeddedResource Include="Styles\Bootstrap\bool.html" />
+    <EmbeddedResource Include="Styles\Bootstrap\string.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
