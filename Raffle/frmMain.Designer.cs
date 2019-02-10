@@ -42,7 +42,11 @@
 			this.colPropertyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colIsNullable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tbHtmlOutput = new FastColoredTextBoxNS.FastColoredTextBox();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.tbCSharpOutput = new FastColoredTextBoxNS.FastColoredTextBox();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btnRefresh = new System.Windows.Forms.ToolStripButton();
 			this.btnCopy = new System.Windows.Forms.ToolStripButton();
@@ -50,31 +54,31 @@
 			this.colTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.tbTypeFilter = new System.Windows.Forms.TextBox();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tbCSharpOutput = new FastColoredTextBoxNS.FastColoredTextBox();
+			this.tbStylePath = new Raffle.Controls.BuilderTextBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).BeginInit();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tbHtmlOutput)).BeginInit();
+			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tbCSharpOutput)).BeginInit();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
-			this.tabControl1.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			this.tabPage2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tbCSharpOutput)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.tbStylePath);
 			this.panel1.Controls.Add(this.cbOrientation);
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Controls.Add(this.cbStyle);
@@ -83,7 +87,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(851, 83);
+			this.panel1.Size = new System.Drawing.Size(851, 110);
 			this.panel1.TabIndex = 0;
 			// 
 			// cbOrientation
@@ -91,7 +95,7 @@
 			this.cbOrientation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cbOrientation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbOrientation.FormattingEnabled = true;
-			this.cbOrientation.Location = new System.Drawing.Point(718, 47);
+			this.cbOrientation.Location = new System.Drawing.Point(718, 77);
 			this.cbOrientation.Name = "cbOrientation";
 			this.cbOrientation.Size = new System.Drawing.Size(121, 21);
 			this.cbOrientation.TabIndex = 4;
@@ -99,7 +103,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(61, 50);
+			this.label2.Location = new System.Drawing.Point(61, 80);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(41, 13);
 			this.label2.TabIndex = 2;
@@ -109,7 +113,7 @@
 			// 
 			this.cbStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbStyle.FormattingEnabled = true;
-			this.cbStyle.Location = new System.Drawing.Point(108, 47);
+			this.cbStyle.Location = new System.Drawing.Point(108, 77);
 			this.cbStyle.Name = "cbStyle";
 			this.cbStyle.Size = new System.Drawing.Size(192, 21);
 			this.cbStyle.TabIndex = 3;
@@ -151,8 +155,8 @@
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
 			this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
-			this.splitContainer1.Size = new System.Drawing.Size(581, 397);
-			this.splitContainer1.SplitterDistance = 186;
+			this.splitContainer1.Size = new System.Drawing.Size(581, 370);
+			this.splitContainer1.SplitterDistance = 173;
 			this.splitContainer1.TabIndex = 2;
 			// 
 			// dgvProperties
@@ -170,7 +174,7 @@
 			this.dgvProperties.Name = "dgvProperties";
 			this.dgvProperties.RowHeadersVisible = false;
 			this.dgvProperties.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvProperties.Size = new System.Drawing.Size(581, 165);
+			this.dgvProperties.Size = new System.Drawing.Size(581, 152);
 			this.dgvProperties.TabIndex = 1;
 			// 
 			// colPropertyName
@@ -206,6 +210,28 @@
 			this.panel3.Size = new System.Drawing.Size(581, 21);
 			this.panel3.TabIndex = 0;
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 25);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(581, 168);
+			this.tabControl1.TabIndex = 2;
+			// 
+			// tabPage1
+			// 
+			this.tabPage1.Controls.Add(this.tbHtmlOutput);
+			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Name = "tabPage1";
+			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage1.Size = new System.Drawing.Size(573, 142);
+			this.tabPage1.TabIndex = 0;
+			this.tabPage1.Text = "Html";
+			this.tabPage1.UseVisualStyleBackColor = true;
+			// 
 			// tbHtmlOutput
 			// 
 			this.tbHtmlOutput.AutoCompleteBracketsList = new char[] {
@@ -228,7 +254,6 @@
 			this.tbHtmlOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.tbHtmlOutput.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
 			this.tbHtmlOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tbHtmlOutput.Font = new System.Drawing.Font("Courier New", 9.75F);
 			this.tbHtmlOutput.IsReplaceMode = false;
 			this.tbHtmlOutput.Language = FastColoredTextBoxNS.Language.HTML;
 			this.tbHtmlOutput.LeftBracket = '<';
@@ -240,9 +265,58 @@
 			this.tbHtmlOutput.RightBracket2 = ')';
 			this.tbHtmlOutput.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
 			this.tbHtmlOutput.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("tbHtmlOutput.ServiceColors")));
-			this.tbHtmlOutput.Size = new System.Drawing.Size(567, 150);
+			this.tbHtmlOutput.Size = new System.Drawing.Size(567, 136);
 			this.tbHtmlOutput.TabIndex = 1;
 			this.tbHtmlOutput.Zoom = 100;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.tbCSharpOutput);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(573, 156);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Model Class";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// tbCSharpOutput
+			// 
+			this.tbCSharpOutput.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+			this.tbCSharpOutput.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\r\n^\\s*(case|default)\\s*[^:]" +
+    "*(?<range>:)\\s*(?<range>[^;]+);\r\n";
+			this.tbCSharpOutput.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+			this.tbCSharpOutput.BackBrush = null;
+			this.tbCSharpOutput.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
+			this.tbCSharpOutput.CharHeight = 14;
+			this.tbCSharpOutput.CharWidth = 8;
+			this.tbCSharpOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.tbCSharpOutput.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+			this.tbCSharpOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbCSharpOutput.IsReplaceMode = false;
+			this.tbCSharpOutput.Language = FastColoredTextBoxNS.Language.CSharp;
+			this.tbCSharpOutput.LeftBracket = '(';
+			this.tbCSharpOutput.LeftBracket2 = '{';
+			this.tbCSharpOutput.Location = new System.Drawing.Point(3, 3);
+			this.tbCSharpOutput.Name = "tbCSharpOutput";
+			this.tbCSharpOutput.Paddings = new System.Windows.Forms.Padding(0);
+			this.tbCSharpOutput.RightBracket = ')';
+			this.tbCSharpOutput.RightBracket2 = '}';
+			this.tbCSharpOutput.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+			this.tbCSharpOutput.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("tbCSharpOutput.ServiceColors")));
+			this.tbCSharpOutput.Size = new System.Drawing.Size(567, 150);
+			this.tbCSharpOutput.TabIndex = 0;
+			this.tbCSharpOutput.Zoom = 100;
 			// 
 			// toolStrip1
 			// 
@@ -290,7 +364,7 @@
 			this.dgvTypes.ReadOnly = true;
 			this.dgvTypes.RowHeadersVisible = false;
 			this.dgvTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvTypes.Size = new System.Drawing.Size(266, 376);
+			this.dgvTypes.Size = new System.Drawing.Size(266, 349);
 			this.dgvTypes.TabIndex = 1;
 			// 
 			// colTypeName
@@ -313,7 +387,7 @@
 			// splitContainer2
 			// 
 			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer2.Location = new System.Drawing.Point(0, 83);
+			this.splitContainer2.Location = new System.Drawing.Point(0, 110);
 			this.splitContainer2.Name = "splitContainer2";
 			// 
 			// splitContainer2.Panel1
@@ -324,81 +398,28 @@
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
-			this.splitContainer2.Size = new System.Drawing.Size(851, 397);
+			this.splitContainer2.Size = new System.Drawing.Size(851, 370);
 			this.splitContainer2.SplitterDistance = 266;
 			this.splitContainer2.TabIndex = 3;
 			// 
-			// tabControl1
+			// tbStylePath
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl1.Location = new System.Drawing.Point(0, 25);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(581, 182);
-			this.tabControl1.TabIndex = 2;
+			this.tbStylePath.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbStylePath.Location = new System.Drawing.Point(108, 44);
+			this.tbStylePath.Name = "tbStylePath";
+			this.tbStylePath.Size = new System.Drawing.Size(731, 26);
+			this.tbStylePath.Suggestions = null;
+			this.tbStylePath.TabIndex = 5;
+			this.tbStylePath.BuilderClicked += new Raffle.Controls.BuilderEventHandler(this.tbStylePath_BuilderClicked);
 			// 
-			// tabPage1
+			// label3
 			// 
-			this.tabPage1.Controls.Add(this.tbHtmlOutput);
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
-			this.tabPage1.Name = "tabPage1";
-			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(573, 156);
-			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "Html";
-			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// tabPage2
-			// 
-			this.tabPage2.Controls.Add(this.tbCSharpOutput);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(573, 156);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Model Class";
-			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
-			// tbCSharpOutput
-			// 
-			this.tbCSharpOutput.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-			this.tbCSharpOutput.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\r\n^\\s*(case|default)\\s*[^:]" +
-    "*(?<range>:)\\s*(?<range>[^;]+);\r\n";
-			this.tbCSharpOutput.AutoScrollMinSize = new System.Drawing.Size(27, 14);
-			this.tbCSharpOutput.BackBrush = null;
-			this.tbCSharpOutput.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
-			this.tbCSharpOutput.CharHeight = 14;
-			this.tbCSharpOutput.CharWidth = 8;
-			this.tbCSharpOutput.Cursor = System.Windows.Forms.Cursors.IBeam;
-			this.tbCSharpOutput.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-			this.tbCSharpOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tbCSharpOutput.Font = new System.Drawing.Font("Courier New", 9.75F);
-			this.tbCSharpOutput.IsReplaceMode = false;
-			this.tbCSharpOutput.Language = FastColoredTextBoxNS.Language.CSharp;
-			this.tbCSharpOutput.LeftBracket = '(';
-			this.tbCSharpOutput.LeftBracket2 = '{';
-			this.tbCSharpOutput.Location = new System.Drawing.Point(3, 3);
-			this.tbCSharpOutput.Name = "tbCSharpOutput";
-			this.tbCSharpOutput.Paddings = new System.Windows.Forms.Padding(0);
-			this.tbCSharpOutput.RightBracket = ')';
-			this.tbCSharpOutput.RightBracket2 = '}';
-			this.tbCSharpOutput.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-			this.tbCSharpOutput.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("tbCSharpOutput.ServiceColors")));
-			this.tbCSharpOutput.Size = new System.Drawing.Size(567, 150);
-			this.tbCSharpOutput.TabIndex = 0;
-			this.tbCSharpOutput.Zoom = 100;
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(29, 51);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(70, 13);
+			this.label3.TabIndex = 6;
+			this.label3.Text = "Style Path:";
 			// 
 			// frmMain
 			// 
@@ -421,7 +442,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvProperties)).EndInit();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.tbHtmlOutput)).EndInit();
+			this.tabPage2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.tbCSharpOutput)).EndInit();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvTypes)).EndInit();
@@ -430,10 +455,6 @@
 			this.splitContainer2.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
 			this.splitContainer2.ResumeLayout(false);
-			this.tabControl1.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			this.tabPage2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.tbCSharpOutput)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -464,6 +485,8 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
 		private FastColoredTextBoxNS.FastColoredTextBox tbCSharpOutput;
+		private System.Windows.Forms.Label label3;
+		private Controls.BuilderTextBox tbStylePath;
 	}
 }
 

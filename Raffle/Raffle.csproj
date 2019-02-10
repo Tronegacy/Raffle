@@ -66,6 +66,7 @@
     <Compile Include="Controls\BuilderTextBox.designer.cs">
       <DependentUpon>BuilderTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ComboBoxes.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>

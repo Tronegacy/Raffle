@@ -31,6 +31,19 @@ namespace Raffle.Controls
 			return false;
 		}
 
+		public bool SelectFolder(BuilderEventArgs e)
+		{
+			FolderBrowserDialog dlg = new FolderBrowserDialog();
+			if (dlg.ShowDialog() == DialogResult.OK)
+			{
+				e.Result = dlg.SelectedPath;
+				e.IsAccepted = true;
+				return true;
+			}
+
+			return false;
+		}
+
 		public BuilderTextBox()
 		{
 			InitializeComponent();			

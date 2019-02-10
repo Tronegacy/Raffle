@@ -1,12 +1,12 @@
 ﻿using JsonSettings;
 using Raffle.Classes;
+using Raffle.Extensions;
 using Raffle.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -52,11 +52,11 @@ namespace Raffle
 			_styles = LoadStyles();
 
 			cbStyle.Items.AddRange(_styles);
-			FillComboBox<Orientation>(cbOrientation);
+			cbOrientation.FillFromEnum<Orientation>();
 
 			LoadFields();
 			InitDataBinding();
-						
+
 			if (File.Exists(tbAssembly.Text))
 			{
 				_assembly = dsAssembly.FromAssembly(tbAssembly.Text);
@@ -64,68 +64,21 @@ namespace Raffle
 			}
 		}
 
-		private void FillComboBox<T>(ComboBox comboBox)
-		{
-			var values = Enum.GetValues(typeof(T)).OfType<T>().ToArray();
-			var names = Enum.GetNames(typeof(T));
-			var items = names.Select((name, index) => new ComboBoxItem<T>(values[index], name)).ToArray();
-			comboBox.Items.Clear();
-			comboBox.Items.AddRange(items);
-		}
-
 		private Style[] LoadStyles()
 		{
 			List<Style> results = new List<Style>();
 
-			results.AddRange(GetStylesFromResources("Raffle.Styles"));
+			results.AddRange(Style.FromResourcePath("Raffle.Styles"));
+
+			results.AddRange(Style.FromFilePath(_settings.StylePath));
 
 			return results.ToArray();
-		}
-
-		private IEnumerable<Style> GetStylesFromResources(string resourcePath)
-		{
-			var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames()
-				.Where(r => r.StartsWith(resourcePath))
-				.Select(r => r.Substring(resourcePath.Length)).ToArray();
-
-			var styles = resources.GroupBy(name =>
-			{
-				string[] parts = name.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-				return parts[0];
-			});
-
-			return styles.Select(grp =>
-			{
-				var result = new Style(grp.Key);
-				result.Templates = LoadResourceTemplates(resourcePath, grp);
-				return result;
-			});			
-		}
-
-		private Dictionary<string, string> LoadResourceTemplates(string path, IGrouping<string, string> grp)
-		{
-			Dictionary<string, string> results = new Dictionary<string, string>();
-
-			foreach (var item in grp)
-			{
-				var parts = item.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-				string typeName = parts[parts.Length - 2]; // the type name is assumed to be the name before th extention (i.e. bool.html)
-				using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream(path + item))
-				{
-					using (var reader = new StreamReader(resource))
-					{
-						string content = reader.ReadToEnd();
-						results.Add(typeName, content);
-					}
-				}
-			}
-
-			return results;
 		}
 
 		private void LoadFields()
 		{
 			tbAssembly.Text = _settings.AssemblyFile;
+			tbStylePath.Text = _settings.StylePath;
 			cbStyle.SelectedIndex = cbStyle.FindString(_settings.Style);
 			cbOrientation.SelectedIndex = cbOrientation.FindString(_settings.SplitterOrientation.ToString());
 			splitContainer1.Orientation = _settings.SplitterOrientation;
@@ -135,7 +88,9 @@ namespace Raffle
 		{
 			tbAssembly.TextChanged += delegate (object sender, EventArgs e) { _settings.AssemblyFile = tbAssembly.Text; };
 
-			cbOrientation.SelectedIndexChanged += delegate (object sender, EventArgs e) 
+			tbStylePath.TextChanged += delegate (object sender, EventArgs e) { _settings.StylePath = tbStylePath.Text; };
+
+			cbOrientation.SelectedIndexChanged += delegate (object sender, EventArgs e)
 			{
 				var value = ((ComboBoxItem<Orientation>)cbOrientation.SelectedItem).Value;
 				_settings.SplitterOrientation = value;
@@ -164,16 +119,8 @@ namespace Raffle
 				.OrderBy(row => row.Index)
 				.Select(row => (row.DataBoundItem as DataRowView).Row as dsAssembly.PropertyRow).ToArray();
 
-			switch (tabControl1.SelectedIndex)
-			{
-				case 0: // html
-					RenderHtmlOutput(props);
-					break;
-
-				case 1: // c# model class
-					RenderModelClass(props);
-					break;
-			}
+			RenderHtmlOutput(props);
+			RenderModelClass(props);
 		}
 
 		private void RenderModelClass(dsAssembly.PropertyRow[] props)
@@ -181,7 +128,7 @@ namespace Raffle
 			StringBuilder output = new StringBuilder();
 
 			dsAssembly.TypeRow currentType = SelectedType();
-			output.AppendLine($"public class {currentType.ShortName}Editor\r\n{{");
+			output.AppendLine($"public class {currentType.ShortName}Edit\r\n{{");
 
 			foreach (var prop in props) output.AppendLine("\t" + prop.CSharpSyntax);
 
@@ -221,7 +168,16 @@ namespace Raffle
 					Clipboard.SetText(tbCSharpOutput.Text);
 					break;
 			}
-			
+		}
+
+		private void tbStylePath_BuilderClicked(object sender, Controls.BuilderEventArgs e)
+		{
+			if (tbStylePath.SelectFolder(e))
+			{
+				_styles = LoadStyles();
+				cbStyle.Items.Clear();
+				cbStyle.Items.AddRange(_styles);
+			}
 		}
 	}
 }

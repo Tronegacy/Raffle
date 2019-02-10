@@ -7,6 +7,7 @@ namespace Raffle.Models
 	{
 		public string AssemblyFile { get; set; }
 		public Orientation SplitterOrientation { get; set; }
+		public string StylePath { get; set; }
 		public string Style { get; set; }
 
 		public override Scope Scope => Scope.User;
